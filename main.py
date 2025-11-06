@@ -1,5 +1,8 @@
 import math
 import os
+import sys
+import time
+
 
 
 # simple calculator app. No offense
@@ -10,22 +13,37 @@ class NonOffensiveCalculator:
 
     #simple math. non-offensive:
     def addition(self):
-        return self.num1 + self.num2
+        real = self.num1 + self.num2
+        return real
 
     def subtraction(self):
-        return self.num1 - self.num2
+        real = self.num1 - self.num2
+        return real
 
     def multiplication(self):
-        return self.num1 * self.num2
+        real = self.num1 * self.num2
+        return real
 
     def division(self):
-        return self.num1 / self.num2
+        real = self.num1 / self.num2
+        return real
 
     def full_division(self):
-        return self.num1 // self.num2
+        real = self.num1 // self.num2
+        return real
 
     def power(self):
-        return self.num1 ** self.num2
+        real = self.num1 ** self.num2
+        return real
+
+    def fake_hang(self, duration=1.2):
+        t = 0
+        while t < duration:
+            sys.stdout.write('.')
+            sys.stdout.flush()
+            time.sleep(0.15)
+            t += 0.15
+        print('')
 
 print('############### CALCULATOR OF TWO NUMBERS ###############\n \n'
       'To list possible operations, type "help"')
@@ -56,6 +74,7 @@ calculator = NonOffensiveCalculator(a, b)
 # Now the chain of if elifelifleleleleliflelelfi
 
 if operation == '1':
+    calculator.fake_hang()
     print(calculator.addition())
 
 elif operation == '2':
