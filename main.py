@@ -2,8 +2,16 @@ import math
 import os
 import sys
 import time
+import random
 
 
+def fake_error_trace():
+    print("Traceback (most recent call last):")
+    print('  File "calc.py", line 666, in <module>')
+    print("    perform_arithmetic()")
+    print("  File \"calc.py\", line 13, in perform_arithmetic")
+    print("    raise CorruptedRealityError('value mismatch')")
+    print("CorruptedRealityError: value mismatch — recommended action: GIVE ME YOUR SOUL")
 
 # simple calculator app. No offense
 class NonOffensiveCalculator:
@@ -73,25 +81,39 @@ calculator = NonOffensiveCalculator(a, b)
 
 # Now the chain of if elifelifleleleleliflelelfi
 
-if operation == '1':
+possibility_error = random.randint(1, 100)
+
+if possibility_error <= 50:
+    is_fake_error = True
+else:
+    is_fake_error = False
+
+if is_fake_error == False:
+
+    if operation == '1':
+        calculator.fake_hang()
+        print(calculator.addition())
+
+    elif operation == '2':
+        print(calculator.subtraction())
+
+    elif operation == '3':
+        calculator.fake_hang()
+        print(calculator.multiplication())
+
+    elif operation == '4':
+        print(calculator.division())
+
+    elif operation == '5':
+        print(calculator.full_division())
+
+    elif operation == '6':
+        calculator.fake_hang()
+        print(calculator.power())
+
+    elif operation == '7':
+        exit()
+
+else:
     calculator.fake_hang()
-    print(calculator.addition())
-
-elif operation == '2':
-    print(calculator.subtraction())
-
-elif operation == '3':
-    print(calculator.multiplication())
-
-elif operation == '4':
-    print(calculator.division())
-
-elif operation == '5':
-    print(calculator.full_division())
-
-elif operation == '6':
-    print(calculator.power())
-
-elif operation == '7':
-    exit()
-
+    fake_error_trace()
