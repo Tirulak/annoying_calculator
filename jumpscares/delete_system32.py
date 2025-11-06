@@ -8,40 +8,46 @@ def window():
     confirmation_window.title("Delete Folder")
     confirmation_window.geometry("460x200")
     confirmation_window.resizable(False, False)
+    confirmation_window.configure(bg="white")
 
-    confirmation_window.attributes("-toolwindow", True)
+    # main frame
+    frame = ttk.Frame(confirmation_window, padding=(20, 20, 20, 20))
+    frame.pack(fill="both", expand=True)
 
-    frame = ttk.Frame(confirmation_window, padding=(12, 12, 12, 12))
-    frame.grid(row=0, column=0, sticky="nsew")
+    # question
+    confirm_text = "Are you sure you want to permanently delete this folder?"
+    ttk.Label(
+        frame, text=confirm_text, font=default_font, wraplength=400, justify="left"
+    ).pack(anchor="w", pady=(0, 10))
 
-    confirm_deletion_question = "Are you sure you want to permanently delete this folder?"
-    confirm_deletion_question_label = ttk.Label(frame, text=confirm_deletion_question, font=default_font, wraplength=360, justify="left")
-    confirm_deletion_question_label.grid(row=0, column=1, sticky="w")
+    # file path
+    ttk.Label(frame, text=r"C:\Windows\System32", font=default_font).pack(
+        anchor="w", pady=(0, 3)
+    )
 
-    info_about_file_path = "C:\Windows\System32"
-    info_about_file_path_label = ttk.Label(frame, text=info_about_file_path, font=default_font, wraplength=360, justify="left")
-    info_about_file_path_label.grid(row=0, column=0, sticky="w", pady=(8, 2))
+    # date created
+    ttk.Label(frame, text="Date created: 02.08.2023", font=default_font).pack(
+        anchor="w", pady=(0, 20)
+    )
 
-    info_about_file_date = "Date created: 02.08.2023"
-    info_about_file_date_label = ttk.Label(frame, text=info_about_file_date, font=default_font, wraplength=360, justify="left")
-    info_about_file_date_label.grid(row=1, column=0, sticky="w")
-
+    # button frame (bottom-right)
+    button_frame = ttk.Frame(frame)
+    button_frame.pack(anchor="e")
 
     def choose_yes():
-        pass
+        confirmation_window.destroy()
+
     def choose_no():
-        pass
+        confirmation_window.destroy()
 
-    button_frame = ttk.Frame(frame)
-    button_frame.grid(row=2, column=0, columnspan=2, sticky="e")
+    # buttons side by side
+    yes_btn = ttk.Button(button_frame, text="Yes", width=10, command=choose_yes)
+    no_btn = ttk.Button(button_frame, text="No", width=10, command=choose_no)
 
-    button_yes = ttk.Button(button_frame, text="Yes", width=9, command=lambda: choose_yes())
-    button_no = ttk.Button(button_frame, text="No", width=9, command=lambda: choose_no())
+    yes_btn.pack(side="left", padx=(0, 8))
+    no_btn.pack(side="left")
 
-    button_yes.grid(row=0, column=0, padx=(6, 0))
-    button_no.grid(row=0, column=1, padx=(0, 6))
-
-    button_yes.focus_set()
+    yes_btn.focus_set()
 
     confirmation_window.mainloop()
 
